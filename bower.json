@@ -1,0 +1,14 @@
+{
+  "name": "photodiscovery",
+  "version": "0.0.1",
+  "homepage": "https://github.com/FunPandaCode/PhotoDiscovery",
+  "authors": [
+    "funpandacode"
+  ],
+  "description": "Discovery daily interest photos from flickr",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "angular-ui-utils": "bower"
+  }
+}
