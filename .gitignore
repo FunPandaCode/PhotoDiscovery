@@ -1,5 +1,4 @@
 build/
 bin/
 node_modules/
-frameworks/
-.c9/
+libs/
