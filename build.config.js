@@ -22,7 +22,7 @@ module.exports = {
   app_files: {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
-    
+
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'src/**/*.spec.coffee' ],
 
@@ -50,19 +50,19 @@ module.exports = {
    * The `frameworks_files.assets` property holds any assets to be copied along
    * with our app's assets. This structure is flattened, so it is not
    * recommended that you use wildcards.
-   * 
+   *
    * 'frameworks/angular/angular.js',
    * 'frameworks/angular-bootstrap/ui-bootstrap-tpls.min.js',
    * 'frameworks/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
    * 'frameworks/angular-ui-router/release/angular-ui-router.js',
    * 'frameworks/angular-ui-utils/modules/route/route.js'
    */
-  frameworks_files: {
+  libs_files: {
     js: [
-      'frameworks/angular/angular.js'
+      'libs/angular/angular.js'
     ],
     css: [
-      'frameworks/bootstrap/dist/css/bootstrap.css'
+      'libs/bootstrap/dist/css/bootstrap.css'
     ],
     assets: [
     ]
@@ -70,12 +70,12 @@ module.exports = {
 
   /**
    * This is a collection of files used during testing only.
-   * 
+   *
    * 'frameworks/angular-mocks/angular-mocks.js'
    */
   test_files: {
     js: [
-      
+
     ]
   },
 };

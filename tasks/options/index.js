@@ -12,8 +12,8 @@ module.exports = {
   build: {
     dir: '<%= build_dir %>',
     src: [
-      '<%= frameworks_files.js %>',
-      '<%= frameworks_files.css %>'
+      '<%= libs_files.js %>',
+      '<%= libs_files.css %>'
     ]
   },
 
