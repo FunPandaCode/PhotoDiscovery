@@ -2,3 +2,4 @@ build/
 bin/
 node_modules/
 libs/
+.DS_Store
