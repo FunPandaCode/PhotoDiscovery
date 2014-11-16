@@ -10,7 +10,17 @@ module.exports = {
    * plugin should auto-detect.
    */
   options: {
-    livereload: false
+    livereload: true
+  },
+
+  /**
+   * When the Gruntfile changes, it will automatically be reloaded!
+   */
+  gruntfile: {
+    files: [ 'Gruntfile.js' ],
+    options: {
+      livereload: false
+    }
   },
 
   /**
@@ -20,4 +30,15 @@ module.exports = {
     files: [ '<%= app_files.html %>' ],
     tasks: [ 'index:build' ]
   },
-}
+
+  /**
+   * When our JavaScript source files change, we want to run lint them and
+   * run our unit tests.
+   */
+  jssrc: {
+    files: [
+      '<%= app_files.js %>'
+    ],
+    tasks: [ 'copy:build_app' ]
+  }
+};

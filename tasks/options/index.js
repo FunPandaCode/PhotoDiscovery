@@ -13,7 +13,8 @@ module.exports = {
     dir: '<%= build_dir %>',
     src: [
       '<%= libs_files.js %>',
-      '<%= libs_files.css %>'
+      '<%= libs_files.css %>',
+      '<%= build_dir %>/src/**/*.js'
     ]
   },
 
@@ -30,4 +31,4 @@ module.exports = {
       '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
     ]
   }
-}
+};

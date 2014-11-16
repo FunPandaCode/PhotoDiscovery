@@ -2,7 +2,20 @@
  * The `copy` task just copies files from A to B.
  */
 module.exports = {
-  build: {
+  build_app: {
+    files: [
+      {
+        src: [
+          '<%= app_files.js %>'
+        ],
+        dest: '<%= build_dir %>',
+        cwd: '.',
+        expand: true
+      }
+    ]
+  },
+
+  build_libs: {
     files: [
       {
         src: [
@@ -30,4 +43,4 @@ module.exports = {
       }
     ]
   }
-}
+};

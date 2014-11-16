@@ -59,7 +59,14 @@ module.exports = {
    */
   libs_files: {
     js: [
-      'libs/angular/angular.js'
+      'libs/angular/angular.js',
+      'libs/angular-animate/angular-animate.js',
+      'libs/angular-ui-router/release/angular-ui-router.js',
+      'libs/jquery/dist/jquery.js',
+      'libs/angular-bootstrap/ui-bootstrap.js',
+      'libs/angular-bootstrap/ui-bootstrap-tpls.js',
+      'libs/bootstrap/dist/js/bootstrap.js'
+
     ],
     css: [
       'libs/bootstrap/dist/css/bootstrap.css'
@@ -75,7 +82,7 @@ module.exports = {
    */
   test_files: {
     js: [
-
+        'libs/angular-mocks/angular-mocks.js'
     ]
   },
 };
