@@ -2,15 +2,15 @@
  * This file/module contains all configuration for the build process.
  */
 module.exports = {
-  /**
+    /**
    * The `build_dir` folder is where our projects are compiled during
    * development and the `compile_dir` folder is where our app resides once it's
    * completely built.
    */
-  build_dir: 'build',
-  compile_dir: 'bin',
+    build_dir: 'build',
+    compile_dir: 'bin',
 
-  /**
+    /**
    * This is a collection of file patterns that refer to our app code (the
    * stuff in `src/`). These file paths are used in the configuration of
    * build tasks. `js` is all project javascript, less tests. `ctpl` contains
@@ -19,21 +19,21 @@ module.exports = {
    * main HTML file, `less` is our main stylesheet, and `unit` contains our
    * app's unit tests.
    */
-  app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
-    jsunit: [ 'src/**/*.spec.js' ],
+    app_files: {
+        js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
+        jsunit: [ 'src/**/*.spec.js' ],
 
-    coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
-    coffeeunit: [ 'src/**/*.spec.coffee' ],
+        coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
+        coffeeunit: [ 'src/**/*.spec.coffee' ],
 
-    atpl: [ 'src/app/**/*.tpl.html' ],
-    ctpl: [ 'src/common/**/*.tpl.html' ],
+        atpl: [ 'src/app/**/*.tpl.html' ],
+        ctpl: [ 'src/common/**/*.tpl.html' ],
 
-    html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
-  },
+        html: [ 'src/index.html' ],
+        less: 'src/less/main.less'
+    },
 
-  /**
+    /**
    * This is the same as `app_files`, except it contains patterns that
    * reference frameworks code (`frameworks/`) that we need to place into the build
    * process somewhere. While the `app_files` property ensures all
@@ -57,32 +57,33 @@ module.exports = {
    * 'frameworks/angular-ui-router/release/angular-ui-router.js',
    * 'frameworks/angular-ui-utils/modules/route/route.js'
    */
-  libs_files: {
-    js: [
-      'libs/angular/angular.js',
-      'libs/angular-animate/angular-animate.js',
-      'libs/angular-ui-router/release/angular-ui-router.js',
-      'libs/jquery/dist/jquery.js',
-      'libs/angular-bootstrap/ui-bootstrap.js',
-      'libs/angular-bootstrap/ui-bootstrap-tpls.js',
-      'libs/bootstrap/dist/js/bootstrap.js'
+    libs_files: {
+        js: [
+            'libs/underscore/underscore.js',
+            'libs/angular/angular.js',
+            'libs/angular-animate/angular-animate.js',
+            'libs/angular-route/angular-route.js',
+            'libs/jquery/dist/jquery.js',
+            'libs/angular-bootstrap/ui-bootstrap.js',
+            'libs/angular-bootstrap/ui-bootstrap-tpls.js',
+            'libs/bootstrap/dist/js/bootstrap.js'
 
-    ],
-    css: [
-      'libs/bootstrap/dist/css/bootstrap.css'
-    ],
-    assets: [
-    ]
-  },
+        ],
+        css: [
+            'libs/bootstrap/dist/css/bootstrap.css'
+        ],
+        assets: [
+        ]
+    },
 
-  /**
+    /**
    * This is a collection of files used during testing only.
    *
    * 'frameworks/angular-mocks/angular-mocks.js'
    */
-  test_files: {
-    js: [
-        'libs/angular-mocks/angular-mocks.js'
-    ]
-  },
+    test_files: {
+        js: [
+            'libs/angular-mocks/angular-mocks.js'
+        ]
+    }
 };

@@ -4,16 +4,16 @@ var app = express();
 app.use(express.static(__dirname + '/build'));
 
 app.get('*', function (req, res) {
-  res.sendFile('./build/index.html', { root: __dirname });
+    res.sendFile('./build/index.html', { root: __dirname });
 });
 
 
 
-var server = app.listen(3000, function () {
+var server = app.listen(8080, function () {
 
-  var host = server.address().address;
-  var port = server.address().port;
+    var host = server.address().address;
+    var port = server.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port);
+    console.log('Example app listening at http://%s:%s', host, port);
 
 });

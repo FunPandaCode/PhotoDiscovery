@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('PhotoDiscovery')
-        .config(config);
+    .module('PhotoDiscovery')
+    .config(config);
 
     function config($routeProvider) {
         $routeProvider
