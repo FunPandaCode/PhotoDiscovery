@@ -14,7 +14,8 @@ module.exports = {
         src: [
             '<%= libs_files.js %>',
             '<%= libs_files.css %>',
-            '<%= build_dir %>/src/**/*.js'
+            '<%= build_dir %>/src/**/*.js',
+            '<%= build_dir %>/src/css/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
     },
 
@@ -28,7 +29,7 @@ module.exports = {
         src: [
             '<%= concat.compile_js.dest %>',
             '<%= vendor_files.css %>',
-            '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+            '<%= build_dir %>/src/css/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
     }
 };

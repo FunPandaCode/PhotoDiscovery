@@ -7,6 +7,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-sass');
 
     /**
    * Load Configurations
@@ -31,7 +32,7 @@ module.exports = function(grunt) {
     *  3. Copy third party's frameworks to build directory
     *  4. Build the index.html to include all the files
     */
-    grunt.registerTask('build', ['clean:build','copy:build_app', 'copy:build_libs','index:build', 'karmaconfig', 'karma:continuous']);
+    grunt.registerTask('build', ['clean:build', 'sass:build','copy:build_app', 'copy:build_libs','index:build', 'karmaconfig', 'karma:continuous']);
 
     /**
     * In order to make it safe to just compile or copy *only* what was changed,

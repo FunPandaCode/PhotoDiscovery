@@ -30,7 +30,7 @@ module.exports = {
         ctpl: [ 'src/common/**/*.tpl.html' ],
 
         html: [ 'src/index.html' ],
-        less: 'src/less/main.less'
+        sass: 'src/sass/main.scss'
     },
 
     /**
@@ -59,18 +59,27 @@ module.exports = {
    */
     libs_files: {
         js: [
-            'libs/underscore/underscore.js',
-            'libs/angular/angular.js',
-            'libs/angular-animate/angular-animate.js',
-            'libs/angular-route/angular-route.js',
-            'libs/jquery/dist/jquery.js',
-            'libs/angular-bootstrap/ui-bootstrap.js',
-            'libs/angular-bootstrap/ui-bootstrap-tpls.js',
-            'libs/bootstrap/dist/js/bootstrap.js'
-
+          'libs/underscore/underscore.js',
+          'libs/angular/angular.js',
+          'libs/angular-animate/angular-animate.js',
+          'libs/angular-route/angular-route.js',
+          'libs/jquery/dist/jquery.js',
+          'libs/bootstrap/dist/js/bootstrap.js',
+          'libs/bootstrap/js/popover.js',
+          'libs/bootstrap/js/tooltip.js',
+          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
+          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
+          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',
+          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
+          'libs/fontawesome/fonts/FontAwesome.otf',
+          'libs/fontawesome/fonts/fontawesome-webfont.eot',
+          'libs/fontawesome/fonts/fontawesome-webfont.svg',
+          'libs/fontawesome/fonts/fontawesome-webfont.ttf',
+          'libs/fontawesome/fonts/fontawesome-webfont.woff'
         ],
         css: [
-            'libs/bootstrap/dist/css/bootstrap.css'
+          'libs/bootstrap/dist/css/bootstrap.css',
+          'libs/fontawesome/css/font-awesome.css'
         ],
         assets: [
         ]
