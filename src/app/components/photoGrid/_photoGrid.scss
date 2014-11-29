@@ -1,0 +1,91 @@
+// main wrapper for all tiled contents
+.tileWrap {
+    overflow: hidden;
+    margin: 10px 5px;
+
+    .tileLoading {
+        position: fixed;
+        left: 46%;
+        top: 33%;
+        color: white;
+        font-size: 160px;
+
+        @media only screen and (max-width : 300px) {
+            left: 30%;
+            top: 33%;
+        }
+        @media only screen and (max-width : 480px) and (min-width : 301px) {
+            left: 35%;
+            top: 33%;
+        }
+    }
+
+    // main box of each tile controlling the layout
+    .tileBox {
+        // default dimension
+        width: 20%;
+        padding-bottom: 20%;
+        // position relative for the content
+        position: relative;
+        // float left to generate tiled like look
+        float: left;
+        // include border (transparet) in the layout so no unexpected result happens
+        // for our hover effect
+        border-style: solid;
+        border-color: transparent;
+
+        // image box so it can place neatly inside
+        .contentBox {
+            overflow: hidden;
+            left: 2px;
+            right: 2px;
+            top: 2px;
+            bottom: 2px;
+            position: absolute;
+
+            > img {
+                width: 100%;
+            }
+
+            // title
+            .titleBox {
+                // place it out of view at the bottom
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                margin-bottom: -100px;
+                // default padding and background
+                background: #000;
+                background: rgba(0, 0, 0, 0.5);
+                color: #FFF;
+                padding: 10px;
+                text-align: center;
+                // transition animation
+                @include transition(all, 0.3s, ease-out);
+            }
+
+            // on hover, animates title moving up
+            &:hover .titleBox {
+                margin-bottom: -0.5px;
+            }
+        }
+
+        @media only screen and (max-width : 480px) {
+                width: 100%;
+                padding-bottom: 100%;
+        }
+        @media only screen and (max-width : 650px) and (min-width : 481px) {
+                width: 50%;
+                padding-bottom: 50%;
+        }
+        @media only screen and (max-width : 1050px) and (min-width : 651px) {
+                width: 33.3%;
+                padding-bottom: 33.3%;
+        }
+        @media only screen and (max-width : 1290px) and (min-width : 1051px) {
+                width: 20%;
+                padding-bottom: 20%;
+        }
+    }
+}

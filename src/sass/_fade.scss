@@ -1,0 +1,57 @@
+/*
+*  http://cssnerd.com/2012/04/03/jquery-like-pure-css3-image-fade-in/
+*/
+
+
+.fadeIn {
+    /* CSS needed for animation
+    ---------------------------------------------------- */
+    opacity:0;
+    @include animation(fadeIn, 1, ease-in);
+    @include animationFillMode(forwards);
+}
+/* Animation Times - Time for image to fade in
+---------------------------------------------------- */
+.fadeInDuration {
+    @include fadeInDuration(1.5s);
+}
+
+/* Animation Delay - Time for image to be delayed
+---------------------------------------------------- */
+.fadeInDelay {
+    @include fadeInDelay(1.5s);
+}
+
+
+
+.fadeOut.ng-hide-remove,
+.fadeOut.ng-hide-add {
+    /* remember, the .hg-hide class is added to element
+    when the active class is added causing it to appear
+    as hidden. Therefore set the styling to display=block
+    so that the hide animation is visible */
+    display:block!important;
+}
+
+.fadeOut.ng-hide-add {
+    @include animation(fadeOut, 3.5s, ease-out);
+}
+
+.fadeOut.ng-hide-remove {
+    @include animation(fadeIn, 0.5s, ease-in);
+}
+
+
+/* Key Frames
+---------------------------------------------------- */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-o-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* Key Frames
+---------------------------------------------------- */
+@-webkit-keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@-moz-keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@-o-keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }

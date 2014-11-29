@@ -2,7 +2,22 @@
     'use strict';
 
     angular.module('PhotoDiscovery')
-    .factory('Photo', function () {
+    .factory('Photo', Photo);
+
+    Photo.$inject = ['Class'];
+
+    function Photo(Class) {
+        var Photo = Class.extend({
+           init: function(photoData) {
+               angular.extend(this, photoData);
+           }
+        });
+
+        return Photo;
+    }
+
+    /*
+    function () {
         function Photo(photoData) {
             if (photoData) {
                 this.initPhoto(photoData);
@@ -17,5 +32,5 @@
         };
 
         return Photo;
-    });
+    }*/
 })();

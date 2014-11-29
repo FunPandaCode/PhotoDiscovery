@@ -59,27 +59,27 @@ module.exports = {
    */
     libs_files: {
         js: [
-          'libs/underscore/underscore.js',
-          'libs/angular/angular.js',
-          'libs/angular-animate/angular-animate.js',
-          'libs/angular-route/angular-route.js',
-          'libs/jquery/dist/jquery.js',
-          'libs/bootstrap/dist/js/bootstrap.js',
-          'libs/bootstrap/js/popover.js',
-          'libs/bootstrap/js/tooltip.js',
-          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
-          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
-          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',
-          'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
-          'libs/fontawesome/fonts/FontAwesome.otf',
-          'libs/fontawesome/fonts/fontawesome-webfont.eot',
-          'libs/fontawesome/fonts/fontawesome-webfont.svg',
-          'libs/fontawesome/fonts/fontawesome-webfont.ttf',
-          'libs/fontawesome/fonts/fontawesome-webfont.woff'
+            'libs/underscore/underscore.js',
+            'libs/angular/angular.js',
+            'libs/angular-animate/angular-animate.js',
+            'libs/angular-route/angular-route.js',
+            'libs/jquery/dist/jquery.js',
+            'libs/bootstrap/dist/js/bootstrap.js',
+            'libs/bootstrap/js/popover.js',
+            'libs/bootstrap/js/tooltip.js'
         ],
         css: [
-          'libs/bootstrap/dist/css/bootstrap.css',
-          'libs/fontawesome/css/font-awesome.css'
+            'libs/bootstrap/dist/css/bootstrap.css',
+            'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.eot',
+            'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
+            'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',
+            'libs/bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
+            'libs/fontawesome/css/font-awesome.css',
+            'libs/fontawesome/fonts/FontAwesome.otf',
+            'libs/fontawesome/fonts/fontawesome-webfont.eot',
+            'libs/fontawesome/fonts/fontawesome-webfont.svg',
+            'libs/fontawesome/fonts/fontawesome-webfont.ttf',
+            'libs/fontawesome/fonts/fontawesome-webfont.woff'
         ],
         assets: [
         ]

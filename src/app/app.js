@@ -4,7 +4,7 @@
     angular.module('PhotoDiscovery', [
         'ngRoute',
         'ngAnimate',
-        'Underscore',
+        'utility.Class',
         'Flickr'
     ])
     .value('appName', 'Photo Discovery');

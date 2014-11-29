@@ -1,0 +1,35 @@
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+@mixin animation($keyframs, $duration, $method) {
+    -webkit-animation: $keyframs $duration $method;
+    -moz-animation: $keyframs $duration $method;
+    -o-animation: $keyframs $duration $method;
+    animation: $keyframs $duration $method;
+}
+
+@mixin animationFillMode($mode) {
+    -webkit-animation-fill-mode: $mode;
+    -moz-animation-fill-mode: $mode;
+    -o-animation-fill-mode: $mode;
+    animation-fill-mode: $mode;
+}
+
+@mixin fadeInDuration($duration) {
+    -webkit-animation-duration: $duration;
+    -moz-animation-duration: $duration;
+    -o-animation-duration: $duration;
+    animation-duration: $duration;
+}
+
+@mixin fadeInDelay($duration) {
+    -webkit-animation-delay: $duration;
+    -moz-animation-delay: $duration;
+    -o-animation-delay: $duration;
+    animation-delay: $duration;
+}
