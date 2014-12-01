@@ -1,9 +1,20 @@
-build/
-bin/
-node_modules/
-libs/
-.DS_Store
-coverage/
+# IDE 
+.c9/
 .idea/
 **/.idea/workspace.xml
 **/.idea/tasks.xml
+
+# node and bower
+node_modules/
+libs/
+
+# development build
+build/
+
+# testing coverage
+coverage/
+
+# ios
+.DS_Store
+
+

@@ -26,8 +26,8 @@ module.exports = {
         coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
         coffeeunit: [ 'src/**/*.spec.coffee' ],
 
-        atpl: [ 'src/app/**/*.template.html' ],
-        ctpl: [ 'src/common/**/*.template.html' ],
+        atpl: [ 'src/app/**/*.tpl.html' ],
+        ctpl: [ 'src/common/**/*.tpl.html' ],
 
         html: [ 'src/index.html' ],
         sass: 'src/sass/main.scss'
