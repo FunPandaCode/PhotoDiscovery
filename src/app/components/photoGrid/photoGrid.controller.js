@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('PhotoDiscovery')
-        .controller("testCtrl", TestController);
+        .module('app.PhotoGrid')
+        .controller('PhotoGridController', PhotoGridController);
 
-    TestController.$inject = ['$scope', 'FlickrService', 'Photo'];
+    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo'];
 
-    function TestController($scope, FlickrSerice, Photo) {
+    function PhotoGridController($scope, FlickrSerice, Photo) {
         var vm = this;
         vm.data = [];
         vm.loadToday = loadImages;
@@ -17,13 +17,11 @@
         // initial load orders
         loadImages('2014-11-22', 4);
 
-        // ---
-        // PRIVATE METHODS.
-        // ---
+        /* Private
+         ---------------------------------------------------- */
 
-        // ---
-        // PUBLIC METHODS.
-        // ---
+        /* Public
+         ---------------------------------------------------- */
 
         function loadImages(date, page) {
             vm.data = [];
@@ -39,13 +37,14 @@
                             );
                         });
                         vm.output = vm.data;
-                    } else { // stat === 'fail'
+
+                    } else {
                         vm.output = response;
                     }
 
                 }, function (error) {
                 })
-                .finally(function() {
+                .finally(function () {
                     vm.isLoading = false;
                 });
         }

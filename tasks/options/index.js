@@ -14,7 +14,12 @@ module.exports = {
         src: [
             '<%= libs_files.js %>',
             '<%= libs_files.css %>',
-            '<%= build_dir %>/src/**/*.js',
+            '<%= build_dir %>/src/app/*.js',
+            '<%= build_dir %>/src/common/**/*.js',
+            '<%= build_dir %>/src/**/*.module.js',
+            '<%= build_dir %>/src/**/*.service.js',
+            '<%= build_dir %>/src/**/*.controller.js',
+            '<%= build_dir %>/src/**/*.directive.js',
             '<%= build_dir %>/src/css/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
     },

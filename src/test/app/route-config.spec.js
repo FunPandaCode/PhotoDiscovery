@@ -10,6 +10,6 @@ describe("route config", function () {
     ));
 
     it("should map routes to controllers", function () {
-        expect(route.routes['/'].controller).toBeUndefined();
+        expect(route.routes['/'].controller).not.toBe(null);
     });
 });

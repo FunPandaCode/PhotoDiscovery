@@ -1,11 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('PhotoDiscovery', [
-        'ngRoute',
-        'ngAnimate',
-        'utility.Class',
-        'Flickr'
-    ])
-    .value('appName', 'Photo Discovery');
+    angular
+        .module('PhotoDiscovery', [
+            'ngRoute',
+            'ngAnimate',
+            'utility.Class',
+            'app.PhotoGrid'
+        ])
+        .value('appName', 'Photo Discovery');
 })();

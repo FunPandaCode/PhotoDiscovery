@@ -26,8 +26,8 @@ module.exports = {
         coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
         coffeeunit: [ 'src/**/*.spec.coffee' ],
 
-        atpl: [ 'src/app/**/*.tpl.html' ],
-        ctpl: [ 'src/common/**/*.tpl.html' ],
+        atpl: [ 'src/app/**/*.template.html' ],
+        ctpl: [ 'src/common/**/*.template.html' ],
 
         html: [ 'src/index.html' ],
         sass: 'src/sass/main.scss'
@@ -59,8 +59,8 @@ module.exports = {
    */
     libs_files: {
         js: [
-            'libs/underscore/underscore.js',
             'libs/angular/angular.js',
+            'libs/underscore/underscore.js',
             'libs/angular-animate/angular-animate.js',
             'libs/angular-route/angular-route.js',
             'libs/jquery/dist/jquery.js',

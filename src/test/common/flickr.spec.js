@@ -1,7 +1,7 @@
 describe("Flick", function () {
     var module;
     beforeEach(function () {
-        module = angular.module("Flickr");
+        module = angular.module("app.Services");
     });
 
     it("should be registered", function () {
@@ -10,7 +10,7 @@ describe("Flick", function () {
 });
 
 describe("Flick Constant", function () {
-    beforeEach(module("Flickr"));
+    beforeEach(module("app.Services"));
 
     var apiKey, apiSecret, flickrRestUrl;
 

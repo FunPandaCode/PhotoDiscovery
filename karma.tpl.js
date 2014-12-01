@@ -10,8 +10,14 @@ module.exports = function ( karma ) {
          */
         files: [
             <% scripts.forEach( function ( file ) { %>'<%= file %>',
-            <% }); %>
-            'src/**/*.js',
+            <% }) ; %>
+            'src/app/*.js',
+            'src/common/**/*.js',
+            'src/**/*.module.js',
+            'src/**/*.service.js',
+            'src/**/*.controller.js',
+            'src/**/*.directive.js',
+            'src/test/**/*.js'
         ],
         exclude: [
             'src/assets/**/*.js'
@@ -23,8 +29,8 @@ module.exports = function ( karma ) {
          * How to report
          */
         preprocessors: {
-            'src/app/*.js': ['coverage'],
-            'src/common/*.js': ['coverage']
+            'src/app/**/*.js': ['coverage'],
+            'src/common/**/*.js': ['coverage']
         },
         reporters: ['progress', 'coverage'],
         coverageReporter: {

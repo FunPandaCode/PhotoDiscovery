@@ -6,7 +6,8 @@ module.exports = {
         files: [
             {
                 src: [
-                    '<%= app_files.js %>'
+                    '<%= app_files.js %>',
+                    '<%= app_files.atpl %>'
                 ],
                 dest: '<%= build_dir %>',
                 cwd: '.',
