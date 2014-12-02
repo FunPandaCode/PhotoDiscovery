@@ -3,11 +3,11 @@
 
     angular
         .module('app.Models')
-        .factory('Photo', Photo);
+        .factory('Photo', PhotoClass);
 
-    Photo.$inject = ['Class'];
+    PhotoClass.$inject = ['Class'];
 
-    function Photo(Class) {
+    function PhotoClass(Class) {
         var Photo = Class.extend({
             init: function(photoData) {
                 angular.extend(this, photoData);

@@ -1,5 +1,5 @@
-describe("route config", function () {
-    beforeEach(module("PhotoDiscovery"));
+describe('route config', function () {
+    beforeEach(module('PhotoDiscovery'));
 
     var route;
 
@@ -9,7 +9,7 @@ describe("route config", function () {
         }
     ));
 
-    it("should map routes to controllers", function () {
+    it('should map routes to controllers', function () {
         expect(route.routes['/'].controller).not.toBe(null);
     });
 });

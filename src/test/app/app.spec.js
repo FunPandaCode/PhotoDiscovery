@@ -1,16 +1,16 @@
-describe("Main app module", function() {
+describe('Main app module', function() {
     var module;
     beforeEach(function() {
-        module = angular.module("PhotoDiscovery");
+        module = angular.module('PhotoDiscovery');
     });
 
-    it("should be registered", function() {
+    it('should be registered', function() {
         expect(module).not.toBe(null);
     });
 });
 
-describe("Main app module", function() {
-    beforeEach(module("PhotoDiscovery"));
+describe('Main app module', function() {
+    beforeEach(module('PhotoDiscovery'));
 
     var appName;
 
@@ -18,7 +18,7 @@ describe("Main app module", function() {
         appName = _appName_;
     }));
 
-    it("app name should be", function() {
+    it('app name should be', function() {
         expect(appName).toMatch('Photo Discovery');
     });
 });

@@ -18,6 +18,7 @@ module.exports = {
     */
     gruntfile: {
         files: [ 'Gruntfile.js', 'build.config.js', 'tasks/*.js', 'task/**/*.js' ],
+        tasks: [ 'jshint:gruntfile' ],
         options: {
             livereload: false,
             reload: true
@@ -40,7 +41,21 @@ module.exports = {
         files: [
             '<%= app_files.js %>'
         ],
-        tasks: [ 'karma:unit:run', 'copy:build_app' ]
+        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_app' ]
+    },
+
+    /**
+     * When a JavaScript unit test file changes, we only want to lint it and
+     * run the unit tests. We don't want to do any live reloading.
+     */
+    jsunit: {
+        files: [
+            '<%= app_files.jsunit %>'
+        ],
+        tasks: [ 'jshint:test', 'karma:unit:run' ],
+        options: {
+            livereload: false
+        }
     },
 
     /**
