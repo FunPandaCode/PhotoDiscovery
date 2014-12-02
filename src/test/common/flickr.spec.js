@@ -17,6 +17,10 @@ describe('Flick Constant', function () {
     beforeEach(inject(function (_FlickrConstants_) {
         FlickrConstants = _FlickrConstants_;
     }));
+    
+    it('constants object should exists', function () {
+        expect(FlickrConstants).not.toBe(null);
+    });
 
     it('api key should exists', function () {
         expect(FlickrConstants.KEY).not.toBe(null);
