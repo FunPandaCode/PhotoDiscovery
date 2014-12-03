@@ -2,8 +2,8 @@
     <div class="tileLoading fadeOut" ng-show="PhotoGridCtrl.isLoading">
         <i class="fa fa-spinner fa-spin"></i>
     </div>
-    <div ng-repeat="photo in PhotoGridCtrl.data" class="tileBox fadeIn fadeInDuration fadeInDelay">
-        <div class="contentBox">
+    <div ng-repeat="photo in PhotoGridCtrl.images" class="tileBox fadeIn fadeInDuration fadeInDelay">
+        <div class="contentBox" data-ng-click="photo.selectedPhoto()">
             <image src="{{ photo.url_s }}" width="{{ photo.width_s }}"></image>
             <div class="titleBox">{{ photo.title }}</div>
         </div>

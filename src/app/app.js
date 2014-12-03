@@ -4,8 +4,7 @@
     angular
         .module('PhotoDiscovery', [
             'ngRoute',
-            'ngAnimate',
-            'utility.Class',
+            'ngAnimate',,
             'app.PhotoGrid'
         ])
         .value('appName', 'Photo Discovery');

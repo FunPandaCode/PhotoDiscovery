@@ -9,7 +9,7 @@
 
     function PhotoGridController($scope, FlickrSerice, Photo) {
         var vm = this;
-        vm.data = [];
+        vm.images = [];
         vm.loadToday = loadImages;
         vm.output = {};
         vm.isLoading = false;
@@ -24,19 +24,30 @@
          ---------------------------------------------------- */
 
         function loadImages(date, page) {
-            vm.data = [];
+            var p,
+                i = 0;
+
+            vm.images = [];
             vm.isLoading = true;
 
             FlickrSerice
                 .loadImages(date, page)
                 .then(function (response) {
                     if (response.data.stat === 'ok') {
+                        // generate photo object for each photo and add to collection
                         angular.forEach(response.data.photos.photo, function (value, index) {
-                            vm.data.push(
-                                new Photo(value)
+                            // increment i for photo display index
+                            i++;
+                            // new photo object based on photo content
+                            p = new Photo(value);
+                            // update display index of the photo
+                            p.displayIndex = i;
+                            // add to collection
+                            vm.images.push(
+                                p
                             );
                         });
-                        vm.output = vm.data;
+                        vm.output = vm.images;
 
                     } else {
                         vm.output = response;

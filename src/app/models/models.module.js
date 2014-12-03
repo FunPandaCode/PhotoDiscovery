@@ -2,5 +2,7 @@
     'use strict';
 
     angular
-        .module('app.Models', []);
+        .module('app.Models', [
+            'utility.Class'
+        ]);
 })();
