@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('Underscore', [])
+        .module('Service.Underscore', [])
         .factory('_', function() {
             return window._;
         });

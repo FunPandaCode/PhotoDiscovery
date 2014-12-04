@@ -5,31 +5,72 @@
         .module('app.PhotoGrid')
         .controller('PhotoGridController', PhotoGridController);
 
-    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo'];
+    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager'];
 
-    function PhotoGridController($scope, FlickrSerice, Photo) {
+    function PhotoGridController($scope, FlickrSerice, Photo, EventManager) {
+        /* Private
+         ---------------------------------------------------- */
         var vm = this;
+
+
+
+        /* UI API
+         ---------------------------------------------------- */
         vm.images = [];
         vm.loadToday = loadImages;
         vm.output = {};
         vm.isLoading = false;
+        vm.selectedPhoto = undefined;
 
-        // initial load orders
+
+
+        /* Init - Constructor
+         ---------------------------------------------------- */
+        // initialize event listeners
+        initEventListeners();
+        // initial load of images
         loadImages('2014-11-22', 4);
 
-        /* Private
-         ---------------------------------------------------- */
 
-        /* Public
-         ---------------------------------------------------- */
 
+        /* Private Funtions
+         ---------------------------------------------------- */
+        /**
+         * Initialize Event Listeners
+         */
+        function initEventListeners() {
+            // Update selected photo reference on PhotoSelected event
+            EventManager.addEventListener('PhotoSelected', function (p){
+                // deselect previous photo
+                if (!angular.isUndefined(vm.selectedPhoto)) {
+                    vm.selectedPhoto.isSelected = false;
+                }
+                // keep a reference of the new selected photo
+                vm.selectedPhoto = p;
+
+                console.log(vm.selectedPhoto.displayIndex);
+            });
+        }
+
+
+
+        /* UI API Function Implementation
+         ---------------------------------------------------- */
+        /**
+         * Load images on this
+         * @param date - date of which images to be retrieved from
+         * @param page - and on this page
+         */
         function loadImages(date, page) {
             var p,
                 i = 0;
 
+            // reset images collection
             vm.images = [];
+            // show loading indicator
             vm.isLoading = true;
 
+            // retieving image based on date and page
             FlickrSerice
                 .loadImages(date, page)
                 .then(function (response) {
@@ -56,6 +97,7 @@
                 }, function (error) {
                 })
                 .finally(function () {
+                    // hide loading indicator
                     vm.isLoading = false;
                 });
         }

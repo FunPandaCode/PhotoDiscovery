@@ -3,6 +3,7 @@
 
     angular
         .module('app.Models', [
-            'utility.Class'
+            'Utility.Class',
+            'Service.EventManager'
         ]);
 })();

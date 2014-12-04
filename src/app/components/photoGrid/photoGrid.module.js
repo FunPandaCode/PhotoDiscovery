@@ -4,6 +4,7 @@
     angular
         .module('app.PhotoGrid', [
             'app.Services',
-            'app.Models'
+            'app.Models',
+            'Service.EventManager'
         ]);
 })();

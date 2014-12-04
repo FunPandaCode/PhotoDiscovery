@@ -5,7 +5,7 @@
  */
 (function () {
     angular
-        .module('utility.Class', [])
+        .module('Utility.Class', [])
         .factory('Class', function() {
             var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/
             // The base Class implementation (does nothing)

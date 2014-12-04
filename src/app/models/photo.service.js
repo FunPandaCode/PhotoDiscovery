@@ -5,9 +5,9 @@
         .module('app.Models')
         .factory('Photo', PhotoClass);
 
-    PhotoClass.$inject = ['Class'];
+    PhotoClass.$inject = ['Class', 'EventManager'];
 
-    function PhotoClass(Class) {
+    function PhotoClass(Class, EventManager) {
         var Photo = Class.extend({
             init: function(photoData) {
                 angular.extend(this, photoData);
@@ -16,6 +16,8 @@
             isSelected: false,
             selectedPhoto: function() {
                 this.isSelected = true;
+
+                EventManager.dispatchEvent('PhotoSelected', this);
             }
         });
 
