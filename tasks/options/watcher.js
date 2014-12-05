@@ -64,5 +64,16 @@ module.exports = {
     sass: {
         files: [ 'src/**/*.scss' ],
         tasks: [ 'sass:build' ]
+    },
+
+    /**
+     * When our templates change, we only rewrite the template cache.
+     */
+    tpls: {
+        files: [
+            '<%= app_files.atpl %>',
+            '<%= app_files.ctpl %>'
+        ],
+        tasks: [ 'html2js' ]
     }
 };

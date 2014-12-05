@@ -3,31 +3,26 @@
  */
 module.exports = {
     build_app: {
-        files: [
-            {
-                src: [
-                    '<%= app_files.js %>',
-                    '<%= app_files.atpl %>'
-                ],
-                dest: '<%= build_dir %>',
-                cwd: '.',
-                expand: true
-            }
-        ]
+        files: [{
+            src: [
+                '<%= app_files.js %>'
+            ],
+            dest: '<%= build_dir %>',
+            cwd: '.',
+            expand: true
+        }]
     },
 
     build_libs: {
-        files: [
-            {
-                src: [
-                    '<%= libs_files.css %>',
-                    '<%= libs_files.js %>'
-                ],
-                dest: '<%= build_dir %>',
-                cwd: '.',
-                expand: true
-            }
-        ]
+        files: [{
+            src: [
+                '<%= libs_files.css %>',
+                '<%= libs_files.js %>'
+            ],
+            dest: '<%= build_dir %>',
+            cwd: '.',
+            expand: true
+        }]
     },
 
     /**

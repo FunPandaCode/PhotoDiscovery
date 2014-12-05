@@ -9,7 +9,7 @@
 module.exports = {
     src: [
         '<%= app_files.js %>',
-        '!src/common/utilities/class.js'
+        '!src/common/utilities/Class.js'
     ],
     test: [
         '<%= app_files.jsunit %>'

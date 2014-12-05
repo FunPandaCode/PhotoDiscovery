@@ -17,7 +17,7 @@ module.exports = function ( karma ) {
             'src/**/*.service.js',
             'src/**/*.controller.js',
             'src/**/*.directive.js',
-            'src/test/**/*.js'
+            'src/**/*.spec.js'
         ],
         exclude: [
             'src/assets/**/*.js'

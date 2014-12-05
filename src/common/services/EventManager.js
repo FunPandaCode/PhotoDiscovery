@@ -64,7 +64,7 @@
                 // apply each listener's function and pass along the data in this event
                 for(var key in listeners){
                     //This could use .apply(arguments) instead, but there is currently a bug with it.
-                    listeners[key](arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+                    listeners[key](arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
                 }
             }
         };

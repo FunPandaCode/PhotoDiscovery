@@ -8,7 +8,7 @@
     function config($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'src/app/components/photoGrid/photoGrid.tpl.html',
+                templateUrl: 'components/photoGrid/photoGrid.tpl.html',
                 controller: 'PhotoGridController',
                 controllerAs: 'PhotoGridCtrl'
             });

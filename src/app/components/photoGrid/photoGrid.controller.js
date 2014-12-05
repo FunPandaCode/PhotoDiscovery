@@ -5,23 +5,20 @@
         .module('app.PhotoGrid')
         .controller('PhotoGridController', PhotoGridController);
 
-    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager'];
+    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager', '$log'];
 
-    function PhotoGridController($scope, FlickrSerice, Photo, EventManager) {
+    function PhotoGridController($scope, FlickrSerice, Photo, EventManager, $log) {
         /* Private
          ---------------------------------------------------- */
         var vm = this;
 
 
-
         /* UI API
          ---------------------------------------------------- */
         vm.images = [];
-        vm.loadToday = loadImages;
-        vm.output = {};
+        vm.loadImages = loadImages;
         vm.isLoading = false;
         vm.selectedPhoto = undefined;
-
 
 
         /* Init - Constructor
@@ -39,17 +36,33 @@
          * Initialize Event Listeners
          */
         function initEventListeners() {
-            // Update selected photo reference on PhotoSelected event
-            EventManager.addEventListener('PhotoSelected', function (p){
-                // deselect previous photo
-                if (!angular.isUndefined(vm.selectedPhoto)) {
-                    vm.selectedPhoto.isSelected = false;
-                }
-                // keep a reference of the new selected photo
-                vm.selectedPhoto = p;
+            $log.info('Initializing event listeners');
 
-                console.log(vm.selectedPhoto.displayIndex);
+            // add listener on PhotoSelected event
+            EventManager.addEventListener('PhotoSelected', handlePhotoSelected);
+
+            // on $destroy, remove all listeners from EventManager
+            $scope.$on('$destroy', function() {
+                EventManager.removeEventListener('PhotoSelected', handlePhotoSelected);
             });
+        }
+
+        /**
+         * Update selected photo reference on
+         * @param event - PhotoSelected event
+         * @param p     - with photo param 'p'
+         */
+        function handlePhotoSelected(event, p) {
+            $log.info('Received PhotoSelected event, updating selected reference');
+
+            // deselect previous photo
+            if (!angular.isUndefined(vm.selectedPhoto)) {
+                vm.selectedPhoto.isSelected = false;
+            }
+            // keep a reference of the new selected photo
+            vm.selectedPhoto = p;
+
+            $log.info('New selected index is ' + vm.selectedPhoto.displayIndex);
         }
 
 
@@ -62,8 +75,9 @@
          * @param page - and on this page
          */
         function loadImages(date, page) {
-            var p,
-                i = 0;
+            var p;
+
+            $log.info('Loading images for date: ' + date + ' and on page: ' + page);
 
             // reset images collection
             vm.images = [];
@@ -75,26 +89,25 @@
                 .loadImages(date, page)
                 .then(function (response) {
                     if (response.data.stat === 'ok') {
+                        $log.info('Got images response');
+
                         // generate photo object for each photo and add to collection
                         angular.forEach(response.data.photos.photo, function (value, index) {
-                            // increment i for photo display index
-                            i++;
                             // new photo object based on photo content
                             p = new Photo(value);
                             // update display index of the photo
-                            p.displayIndex = i;
+                            p.displayIndex = index + 1;
                             // add to collection
-                            vm.images.push(
-                                p
-                            );
+                            vm.images.push(p);
                         });
-                        vm.output = vm.images;
-
                     } else {
-                        vm.output = response;
+                        $log.warn('Response status is not ok');
+                        $log.warn(response);
                     }
 
                 }, function (error) {
+                    $log.error('Error');
+                    $log.error(error);
                 })
                 .finally(function () {
                     // hide loading indicator

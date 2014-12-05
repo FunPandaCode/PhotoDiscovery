@@ -3,8 +3,21 @@
 
     angular
         .module('PhotoDiscovery', [
+        /**
+         * HTML templates
+         */
+            'appTemplates',
+            'commonTemplates',
+
+        /**
+         * Angular Modules
+         */
             'ngRoute',
-            'ngAnimate',,
+            'ngAnimate',
+
+        /**
+         * Application Modules
+         */
             'app.PhotoGrid'
         ])
         .value('appName', 'Photo Discovery');

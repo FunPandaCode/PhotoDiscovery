@@ -4,8 +4,8 @@
     </div>
     <div ng-repeat="photo in PhotoGridCtrl.images" class="tileBox fadeIn fadeInDuration fadeInDelay">
         <div class="contentBox" data-ng-click="photo.selectedPhoto()">
-            <image src="{{ photo.url_s }}" width="{{ photo.width_s }}"></image>
-            <div class="titleBox">{{ photo.title }}</div>
+            <image src="{{ ::photo.url_s }}" width="{{ ::photo.width_s }}"></image>
+            <div class="titleBox">{{ ::photo.title }}</div>
         </div>
     </div>
 </div>
