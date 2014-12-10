@@ -18,7 +18,8 @@
         /**
          * Application Modules
          */
-            'app.PhotoGrid'
+            'app.PhotoGrid',
+            'app.Menu'
         ])
         .value('appName', 'Photo Discovery');
 })();

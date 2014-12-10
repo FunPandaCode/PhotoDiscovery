@@ -17,7 +17,7 @@
             selectedPhoto: function() {
                 this.isSelected = true;
 
-                EventManager.dispatchEvent('PhotoSelected', this);
+                EventManager.dispatchEvent('selectedPhotoChanged', this);
             }
         });
 

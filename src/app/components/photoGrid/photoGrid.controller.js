@@ -5,9 +5,11 @@
         .module('app.PhotoGrid')
         .controller('PhotoGridController', PhotoGridController);
 
-    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager', '$log'];
+    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager', '$routeParams', '$log'];
 
-    function PhotoGridController($scope, FlickrSerice, Photo, EventManager, $log) {
+    function PhotoGridController($scope, FlickrSerice, Photo, EventManager, $routeParams, $log) {
+        $log.info('PhotoGridController created');
+
         /* Private
          ---------------------------------------------------- */
         var vm = this;
@@ -16,34 +18,43 @@
         /* UI API
          ---------------------------------------------------- */
         vm.images = [];
-        vm.loadImages = loadImages;
         vm.isLoading = false;
         vm.selectedPhoto = undefined;
+        vm.selectedDate = $routeParams.date;
+        vm.selectedPage = $routeParams.page;
 
 
-        /* Init - Constructor
-         ---------------------------------------------------- */
-        // initialize event listeners
-        initEventListeners();
-        // initial load of images
-        loadImages('2014-11-22', 4);
+        // initialize controller
+        init();
 
 
 
         /* Private Funtions
          ---------------------------------------------------- */
         /**
+         * Constructor
+         */
+        function init() {
+            // initialize event listeners
+            initEventListeners();
+
+            // load images for today
+            loadImages(vm.selectedDate, vm.selectedPage);
+        }
+
+        /**
          * Initialize Event Listeners
          */
         function initEventListeners() {
-            $log.info('Initializing event listeners');
+            $log.info('PhotoGridController: Initializing event listeners');
 
-            // add listener on PhotoSelected event
-            EventManager.addEventListener('PhotoSelected', handlePhotoSelected);
+            // add listener on selectedPhotoChanged event
+            EventManager.addEventListener('selectedPhotoChanged', handleSelectedPhotoChanged);
 
             // on $destroy, remove all listeners from EventManager
             $scope.$on('$destroy', function() {
-                EventManager.removeEventListener('PhotoSelected', handlePhotoSelected);
+                $log.info('PhotoGridController: $destroy executed');
+                EventManager.removeEventListener('selectedPhotoChanged', handleSelectedPhotoChanged);
             });
         }
 
@@ -52,17 +63,17 @@
          * @param event - PhotoSelected event
          * @param p     - with photo param 'p'
          */
-        function handlePhotoSelected(event, p) {
-            $log.info('Received PhotoSelected event, updating selected reference');
+        function handleSelectedPhotoChanged(event, newPhoto) {
+            $log.info('PhotoGridController: Received selectedPhotoChanged event, updating selected reference');
 
             // deselect previous photo
             if (!angular.isUndefined(vm.selectedPhoto)) {
                 vm.selectedPhoto.isSelected = false;
             }
             // keep a reference of the new selected photo
-            vm.selectedPhoto = p;
+            vm.selectedPhoto = newPhoto;
 
-            $log.info('New selected index is ' + vm.selectedPhoto.displayIndex);
+            $log.info('PhotoGridController: New selected index is ' + vm.selectedPhoto.displayIndex);
         }
 
 
@@ -77,7 +88,7 @@
         function loadImages(date, page) {
             var p;
 
-            $log.info('Loading images for date: ' + date + ' and on page: ' + page);
+            $log.info('PhotoGridController: Loading images for date: ' + date + ' and on page: ' + page);
 
             // reset images collection
             vm.images = [];
@@ -89,7 +100,7 @@
                 .loadImages(date, page)
                 .then(function (response) {
                     if (response.data.stat === 'ok') {
-                        $log.info('Got images response');
+                        $log.info('PhotoGridController: Got images response');
 
                         // generate photo object for each photo and add to collection
                         angular.forEach(response.data.photos.photo, function (value, index) {

@@ -7,7 +7,9 @@
         .module('Service.EventManager', [])
         .service('EventManager', EventManager);
 
-    function EventManager() {
+    EventManager.$inject = ['$log'];
+
+    function EventManager($log) {
         /* Private
          ---------------------------------------------------- */
         var _listeners = {};
@@ -27,6 +29,7 @@
                 _listeners[type] = [];
             }
 
+            $log.info('EventManager: add event ' + type);
             // add listener's function to collection under event type
             _listeners[type].push(listener);
         };
@@ -43,6 +46,7 @@
                 var index = _listeners[type].indexOf(listener);
                 // remove from collection if index is valid
                 if (index !== -1) {
+                    $log.info('EventManager: remove event ' + type);
                     _listeners[type].splice(index, 1);
                 }
             }
@@ -63,6 +67,7 @@
 
                 // apply each listener's function and pass along the data in this event
                 for(var key in listeners){
+                    $log.info('EventManager: dispatch event ' + arguments[0]);
                     //This could use .apply(arguments) instead, but there is currently a bug with it.
                     listeners[key](arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
                 }

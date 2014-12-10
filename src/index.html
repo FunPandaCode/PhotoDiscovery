@@ -10,58 +10,12 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navBarStyle" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" style="color: white;">Photo Discovery</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right" style="background: transparent; border-style:none;">
-          <li>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="input-group">
-                <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span> </button>
-                    </span>
-              </div>
-            </form>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#" >Action</a></li>
-              <li><a href="#" >Another action</a></li>
-              <li><a href="#" >Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="#" >Separated link</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+  <div ng-include="'components/menu/menu.tpl.html'"></div>
   <div class="container-fluid">
     <div ng-view></div>
   </div>
 
   <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
   <script type="text/javascript" src="<%= file %>"></script><% }); %>
-
-  <script type="text/javascript">
-    $(function () {
-      $('[data-toggle="popover"]').popover()
-    })
-  </script>
 </body>
 </html>

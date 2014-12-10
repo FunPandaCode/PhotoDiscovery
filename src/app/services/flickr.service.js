@@ -26,7 +26,7 @@
             var deferred = $q.defer();
             
             $http({
-                cache: true,
+                cache: false,
                 method: 'get',
                 url: [FlickrConstants.REST_URL, '&api_key=', FlickrConstants.KEY,'&date=', date, '&page=', page].join('')
             }).success(function (data, status, headers, config) {

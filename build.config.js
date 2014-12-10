@@ -20,11 +20,15 @@ module.exports = {
    * app's unit tests.
    */
     app_files: {
-        js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
-        jsunit: [ 'src/**/*.spec.js' ],
+        js: [
+            'src/**/*.js',
 
-        coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
-        coffeeunit: [ 'src/**/*.spec.coffee' ],
+            /* Exclude these */
+            '!src/**/*.spec.js',
+            '!src/assets/**/*.js',
+            '!src/libs/**/*.js'
+        ],
+        jsunit: [ 'src/**/*.spec.js' ],
 
         atpl: [ 'src/app/**/*.tpl.html' ],
         ctpl: [ 'src/common/**/*.tpl.html' ],
@@ -59,14 +63,14 @@ module.exports = {
    */
     libs_files: {
         js: [
-            'libs/angular/angular.js',
-            'libs/underscore/underscore.js',
-            'libs/angular-animate/angular-animate.js',
-            'libs/angular-route/angular-route.js',
             'libs/jquery/dist/jquery.js',
             'libs/bootstrap/dist/js/bootstrap.js',
             'libs/bootstrap/js/popover.js',
-            'libs/bootstrap/js/tooltip.js'
+            'libs/bootstrap/js/tooltip.js',
+            'src/libs/**/*.js',
+            'libs/angular/angular.js',
+            'libs/angular-animate/angular-animate.js',
+            'libs/angular-route/angular-route.js'
         ],
         css: [
             'libs/bootstrap/dist/css/bootstrap.css',
@@ -79,7 +83,8 @@ module.exports = {
             'libs/fontawesome/fonts/fontawesome-webfont.eot',
             'libs/fontawesome/fonts/fontawesome-webfont.svg',
             'libs/fontawesome/fonts/fontawesome-webfont.ttf',
-            'libs/fontawesome/fonts/fontawesome-webfont.woff'
+            'libs/fontawesome/fonts/fontawesome-webfont.woff',
+            'src/libs/bootstrap-datepicker/datepicker.css'
         ],
         assets: [
         ]

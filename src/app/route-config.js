@@ -11,6 +11,11 @@
                 templateUrl: 'components/photoGrid/photoGrid.tpl.html',
                 controller: 'PhotoGridController',
                 controllerAs: 'PhotoGridCtrl'
+            })
+            .when('/:date/:page', {
+                templateUrl: 'components/photoGrid/photoGrid.tpl.html',
+                controller: 'PhotoGridController',
+                controllerAs: 'PhotoGridCtrl'
             });
     }
 })();
