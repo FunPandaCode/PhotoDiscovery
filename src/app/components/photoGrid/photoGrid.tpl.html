@@ -3,19 +3,19 @@
         <i class="fa fa-spinner fa-spin"></i>
     </div>
     <div ng-repeat="photo in PhotoGridCtrl.images" class="tileBox fadeIn fadeInDuration fadeInDelay">
-        <div class="contentBox" data-ng-click="photo.selectedPhoto()">
+        <div ng-class="['contentBox', PhotoGridCtrl.displayMode]" data-ng-click="photo.selectedPhoto()">
             <image src="{{ ::photo.url_s }}" width="{{ ::photo.width_s }}"></image>
             <div class="titleBox">{{ ::photo.title }}</div>
         </div>
     </div>
+</div>
+<div class="row text-center">
     <nav>
-        <ul class="pagination">
+        <ul class="pagination pagination-lg photoPagination">
             <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+            <li ng-repeat="page in PhotoGridCtrl.pages" ng-class="{'active' : PhotoGridCtrl.currentPage === page}">
+                <a href="#">{{ ::page }}</a>
+            </li>
             <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
         </ul>
     </nav>

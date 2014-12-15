@@ -5,17 +5,39 @@
         .module('app.Menu')
         .directive('datePicker', DatePicker);
 
-    DatePicker.$inject = ['EventManager', '$location', '$log'];
+    DatePicker.$inject = ['EventManager', '$location', '$route', '$log'];
 
-    function DatePicker(EventManager, $location, $log) {
+    function DatePicker(EventManager, $location, $route, $log) {
         $log.info('DatePicker created');
 
+        return {
+            restrict: 'E',
+            scope: {},
+            templateUrl: 'components/menu/datepicker.tpl.html',
+            link: link
+        };
+
         function link(scope, element, attrs) {
-            // Initialize scope.selectedDate to first available date
-            scope.selectedDate = new Date().format('Y\\-m\\-d');
-            // change location path on this initial selection
-            $log.info('DatePicker: initial path "/' + new Date().format('Y\\-m\\-d') + '/1"');
-            $location.path('/' + scope.selectedDate + '/1');
+            // Note: $routeParams at this point does not get updated yet so it's just and empty object.
+            //       So in order to retrieve the params in case user refresh the browser, $route.current.params
+            //       is the other option.
+
+
+            // if route params date does not exists then initialize using today's date
+            // this happens when users load the index page (default route)
+            if ($route.current.params.date === undefined) {
+                // Initialize scope.selectedDate to first available date
+                scope.selectedDate = new Date().format('Y\\-m\\-d');
+                // change location path on this initial selection
+                $log.info('DatePicker: initial path "/' + new Date().format('Y\\-m\\-d') + '/1"');
+                $location.path('/' + scope.selectedDate + '/1');
+            } else {
+                // initialize selected date with params.date
+                // most likely user refresh browser with the current route and its existing params
+                // in this case we want to config the date picker with the date param
+                scope.selectedDate = $route.current.params.date;
+            }
+
 
 
             /**
@@ -36,6 +58,9 @@
                 orientation: 'top auto',
                 todayBtn: 'linked'
             });
+
+            // set the date picker to select intialized date
+            element.datepicker('update', scope.selectedDate);
 
             // on date changed, update scope's selectedDate and path
             element.on('changeDate', function(e) {
@@ -59,18 +84,8 @@
                         scope.selectedDate = date.format('Y\\-m\\-d');
                         $location.path('/' + scope.selectedDate + '/1');
                     });
-
-                    // dispatch new selection event
-                    //EventManager.dispatchEvent('selectedDateChanged', scope.selectedDate);
                 }
             });
         }
-
-        return {
-            restrict: 'E',
-            scope: {},
-            templateUrl: 'components/menu/datepicker.tpl.html',
-            link: link
-        };
     }
 })();
