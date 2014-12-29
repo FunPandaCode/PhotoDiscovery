@@ -5,15 +5,14 @@
         .module('app.PhotoGrid')
         .controller('PhotoGridController', PhotoGridController);
 
-    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager', '$routeParams', '$log'];
+    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager', '$routeParams', '$location', '$log'];
 
-    function PhotoGridController($scope, FlickrSerice, Photo, EventManager, $routeParams, $log) {
+    function PhotoGridController($scope, FlickrSerice, Photo, EventManager, $routeParams, $location, $log) {
         $log.info('PhotoGridController created');
 
         /* Private
          ---------------------------------------------------- */
         var vm = this;
-        var MAX_DISPLAY_PAGES = 5;
 
 
         /* UI API
@@ -21,12 +20,6 @@
         vm.images = [];
         vm.isLoading = false;
         vm.selectedPhoto = undefined;
-        vm.selectedDate = $routeParams.date;
-        vm.selectedPage = $routeParams.page;
-        vm.displayMode = 'thumbnail';
-        vm.pages = [];
-        vm.currentPage = 1;
-        vm.totalPages = 25;
 
 
         // initialize controller
@@ -34,23 +27,14 @@
 
 
 
-        /* Private Funtions
-         ---------------------------------------------------- */
+        /* ////////////////////////////////////////// */
+
+
+
         /**
          * @Constructor
          */
         function init() {
-            // initialize event listeners
-            initEventListeners();
-
-            // load images for today
-            loadImages(vm.selectedDate, vm.selectedPage);
-        }
-
-        /**
-         * Initialize Event Listeners
-         */
-        function initEventListeners() {
             $log.info('PhotoGridController: Initializing event listeners');
 
             // add listener on selectedPhotoChanged event
@@ -61,6 +45,9 @@
                 $log.info('PhotoGridController: $destroy executed');
                 EventManager.removeEventListener('selectedPhotoChanged', handleSelectedPhotoChanged);
             });
+
+            // load images for today
+            loadImages($routeParams.date, $routeParams.page);
         }
 
         /**
@@ -82,81 +69,17 @@
         }
 
         /**
-         * Initialize the pagination using currentPage and totalPages in the calculation
-         */
-        function initPagination() {
-            var startingPage,
-                pageCount;
-
-            // if totalPages is not valid then reset
-            if (vm.totalPages === undefined || (typeof vm.totalPages !== 'number')) {
-                vm.pages = [];
-                vm.currentPage = 0;
-                vm.totalPages = 0;
-                return;
-            }
-
-            // total pages less than max number of display pages then show from page 1 to whatever
-            // total pages is
-            if (vm.totalPages <= MAX_DISPLAY_PAGES) {
-                startingPage = 1;
-                pageCount = vm.totalPages;
-            }
-            // determine the pages to be displayed when we have more than max display number of pages
-            else {
-                // current page is >= 4 then we want the current page to be in the middle,
-                // with the exception that if current page >= total pages minus 2.  This is prevent displaying
-                // pages that do not exist if we followed the current page to be in the middle guideline
-                if (vm.currentPage >= 4) {
-                    startingPage = (vm.currentPage >= vm.totalPages - 2) ? vm.totalPages - 4 : vm.currentPage - 2;
-                    pageCount = MAX_DISPLAY_PAGES;
-                }
-                // current page is < 4 then display page 1 to max display pages, this is to prevent displaying page 0
-                // or less.
-                else {
-                    startingPage = 1;
-                    pageCount = MAX_DISPLAY_PAGES;
-                }
-            }
-
-            // populate the pages array
-            populatePagination(startingPage, pageCount);
-        }
-
-        /**
-         * Populate pagination with supplied
-         * @param startingValue -   starting page value
-         * @param nTime         -   ending n-1 count from starting page
-         */
-        function populatePagination(startingValue, nTime) {
-            var count = 0;
-            vm.pages = [];
-            do {
-                vm.pages.push(startingValue + count);
-                count++;
-            }
-            while (count < nTime);
-        }
-
-
-
-        /* UI API Function Implementation
-         ---------------------------------------------------- */
-        /**
          * Load images on this
          * @param date - date of which images to be retrieved from
          * @param page - and on this page
          */
         function loadImages(date, page) {
-            var p;
-
             $log.info('PhotoGridController: Loading images for date: ' + date + ' and on page: ' + page);
 
             // reset images collection
-            vm.images = [];
+            vm.images = null;
             // reset pagination
             vm.totalPages = 0;
-            initPagination();
 
             // show loading indicator
             vm.isLoading = true;
@@ -168,19 +91,22 @@
                     if (response.data.stat === 'ok') {
                         $log.info('PhotoGridController: Got images response');
 
-                        // generate pagination based on currentPage and totalPages
-                        vm.currentPage = response.data.photos.page;
-                        vm.totalPages = response.data.photos.pages;
-                        initPagination();
+                        // if result returned a different page then $routeParams, that means user entered a page greater
+                        // than the total pages for selected date.  If that is the case then redirect to last page.
+                        if(parseInt(response.data.photos.page) < page) {
+                            $location.path('/' + date + '/' + response.data.photos.page);
+                            return;
+                        }
+
+                        // dispatch a new set of pages
+                        EventManager.dispatchEvent('newPhotosLoaded', parseInt(response.data.photos.pages));
 
                         // generate photo object for each photo and add to collection
-                        angular.forEach(response.data.photos.photo, function (value, index) {
-                            // new photo object based on photo content
-                            p = new Photo(value);
-                            // update display index of the photo
-                            p.displayIndex = index + 1;
-                            // add to collection
-                            vm.images.push(p);
+                        vm.images = response.data.photos.photo.map(function(item, index) {
+                            var p = new Photo(item);
+                            p.displayIndex = index;
+
+                            return p;
                         });
                     } else {
                         $log.warn('Response status is not ok');

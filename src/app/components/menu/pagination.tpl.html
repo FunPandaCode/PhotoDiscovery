@@ -1,0 +1,19 @@
+<nav>
+    <ul class="pagination photoPagination">
+        <li ng-class="{'disabled' : currentPage === 1}">
+            <a href="" ng-click="onPreviousPageClicked()">
+                <i class="fa fa-angle-double-left"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li ng-repeat="page in pages" ng-class="{'active' : currentPage === page, 'page-item' : true}">
+            <a href="" ng-click="onPageCliced(page)">{{ ::page }}</a>
+        </li>
+        <li ng-class="{'disabled' : currentPage === totalPages}">
+            <a href="" ng-click="onNextPageClicked()">
+                <i class="fa fa-angle-double-right"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

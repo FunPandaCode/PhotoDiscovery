@@ -67,7 +67,9 @@ module.exports = {
             'libs/bootstrap/dist/js/bootstrap.js',
             'libs/bootstrap/js/popover.js',
             'libs/bootstrap/js/tooltip.js',
-            'src/libs/**/*.js',
+            'src/libs/date.format.js',
+            'src/libs/bootstrap-datepicker/datepicker.js',
+            'src/libs/fancybox/jquery.fancybox.js',
             'libs/angular/angular.js',
             'libs/angular-animate/angular-animate.js',
             'libs/angular-route/angular-route.js'
@@ -84,9 +86,15 @@ module.exports = {
             'libs/fontawesome/fonts/fontawesome-webfont.svg',
             'libs/fontawesome/fonts/fontawesome-webfont.ttf',
             'libs/fontawesome/fonts/fontawesome-webfont.woff',
-            'src/libs/bootstrap-datepicker/datepicker.css'
+            'src/libs/bootstrap-datepicker/datepicker.css',
+            'src/libs/fancybox/jquery.fancybox.css'
         ],
         assets: [
+            'src/libs/fancybox/blank.gif',
+            'src/libs/fancybox/fancybox_loading.gif',
+            'src/libs/fancybox/fancybox_loading@2x.gif',
+            'src/libs/fancybox/fancybox_overlay.png',
+            'src/libs/fancybox/fancybox_sprite.png'
         ]
     },
 

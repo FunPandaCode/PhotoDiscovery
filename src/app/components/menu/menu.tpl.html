@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-inverse navbar-fixed-top navBarStyle" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#photo-discovery-menu">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -11,10 +11,13 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="photo-discovery-menu">
             <ul class="nav navbar-nav navbar-right" style="background: transparent; border-style:none;">
                 <li>
-                    <form class="navbar-form navbar-left" role="search">
+                    <pagination total-pages="25"></pagination>
+                </li>
+                <li>
+                    <form class="navbar-form" role="search">
                         <date-picker></date-picker>
                     </form>
                 </li>

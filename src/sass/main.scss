@@ -6,8 +6,6 @@ body {
     padding-top: 50px;
 }
 
-.navBarStyle {
-    background: rgba(255, 255, 255, 0.2);
-}
 
+@import '../app/components/menu/menu';
 @import '../app/components/photoGrid/photoGrid';

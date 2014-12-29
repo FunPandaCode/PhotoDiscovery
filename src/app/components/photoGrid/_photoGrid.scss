@@ -3,6 +3,7 @@
     overflow: hidden;
     margin: 10px 5px 0px 5px;
 
+
     .tileLoading {
         position: fixed;
         left: 46%;
@@ -39,8 +40,10 @@
             bottom: 2px;
             position: absolute;
 
-            > img {
-                width: 100%;
+            > a {
+                > img {
+                    width: 100%;
+                }
             }
 
             // title
@@ -68,25 +71,20 @@
         }
 
         @media only screen and (max-width : 480px) {
-                width: 100%;
-                padding-bottom: 100%;
+            width: 100%;
+            padding-bottom: 100%;
         }
         @media only screen and (max-width : 650px) and (min-width : 481px) {
-                width: 50%;
-                padding-bottom: 50%;
+            width: 50%;
+            padding-bottom: 50%;
         }
         @media only screen and (max-width : 1050px) and (min-width : 651px) {
-                width: 33.3%;
-                padding-bottom: 33.3%;
+            width: 33.3%;
+            padding-bottom: 33.3%;
         }
         @media only screen and (max-width : 1290px) and (min-width : 1051px) {
-                width: 20%;
-                padding-bottom: 20%;
+            width: 20%;
+            padding-bottom: 20%;
         }
     }
-}
-
-.photoPagination {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
 }

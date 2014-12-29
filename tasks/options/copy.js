@@ -13,11 +13,21 @@ module.exports = {
         }]
     },
 
+    build_assets: {
+        files: [{
+            src: ['**'],
+            dest: '<%= build_dir %>/src/assets/',
+            cwd: 'src/assets',
+            expand: true
+        }]
+    },
+
     build_libs: {
         files: [{
             src: [
                 '<%= libs_files.css %>',
-                '<%= libs_files.js %>'
+                '<%= libs_files.js %>',
+                '<%= libs_files.assets %>'
             ],
             dest: '<%= build_dir %>',
             cwd: '.',
@@ -26,9 +36,9 @@ module.exports = {
     },
 
     /**
-   * Copy 'compile' target, just copies all files in 'build_dir'/assets into
-   * 'compile_dir'/assets
-   */
+     * Copy 'compile' target, just copies all files in 'build_dir'/assets into
+     * 'compile_dir'/assets
+     */
     compile: {
         files: [
             {

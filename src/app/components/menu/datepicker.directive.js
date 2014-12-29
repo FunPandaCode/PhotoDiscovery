@@ -5,9 +5,9 @@
         .module('app.Menu')
         .directive('datePicker', DatePicker);
 
-    DatePicker.$inject = ['EventManager', '$location', '$route', '$log'];
+    DatePicker.$inject = ['$location', '$route', '$log'];
 
-    function DatePicker(EventManager, $location, $route, $log) {
+    function DatePicker($location, $route, $log) {
         $log.info('DatePicker created');
 
         return {
@@ -17,12 +17,10 @@
             link: link
         };
 
-        function link(scope, element, attrs) {
+        function link(scope, element, attributes) {
             // Note: $routeParams at this point does not get updated yet so it's just and empty object.
             //       So in order to retrieve the params in case user refresh the browser, $route.current.params
             //       is the other option.
-
-
             // if route params date does not exists then initialize using today's date
             // this happens when users load the index page (default route)
             if ($route.current.params.date === undefined) {
@@ -31,14 +29,14 @@
                 // change location path on this initial selection
                 $log.info('DatePicker: initial path "/' + new Date().format('Y\\-m\\-d') + '/1"');
                 $location.path('/' + scope.selectedDate + '/1');
+
+                return;
             } else {
                 // initialize selected date with params.date
                 // most likely user refresh browser with the current route and its existing params
                 // in this case we want to config the date picker with the date param
                 scope.selectedDate = $route.current.params.date;
             }
-
-
 
             /**
              * $('.input-group.date') === element param
@@ -64,8 +62,7 @@
 
             // on date changed, update scope's selectedDate and path
             element.on('changeDate', function(e) {
-                var date,
-                    dateSplit;
+                var date;
 
                 // if user de-select current selected date which will resulted in undefined
                 // to fix set selected to last selected, since 'update' does not dispatch changedDate we won't
