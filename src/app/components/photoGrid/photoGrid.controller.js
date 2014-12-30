@@ -12,7 +12,8 @@
 
         /* Private
          ---------------------------------------------------- */
-        var vm = this;
+        var vm = this,
+            deregFunc;
 
 
         /* UI API
@@ -37,35 +38,23 @@
         function init() {
             $log.info('PhotoGridController: Initializing event listeners');
 
-            // add listener on selectedPhotoChanged event
-            EventManager.addEventListener('selectedPhotoChanged', handleSelectedPhotoChanged);
+            // load images once route changed successfully
+            deregFunc = $scope.$on('$routeChangeSuccess', function () {
+                $log.info('PhotoGridController: $routeChangeSuccess');
 
-            // on $destroy, remove all listeners from EventManager
-            $scope.$on('$destroy', function() {
-                $log.info('PhotoGridController: $destroy executed');
-                EventManager.removeEventListener('selectedPhotoChanged', handleSelectedPhotoChanged);
+                if(angular.isDefined($routeParams.date) && angular.isDefined($routeParams.page)){
+                    // load images
+                    loadImages($routeParams.date, $routeParams.page);
+                }
             });
 
-            // load images for today
-            loadImages($routeParams.date, $routeParams.page);
-        }
+            // clean up resources on $destroy
+            $scope.$on('$destroy', function() {
+                $log.info('PhotoGridController: $destroy');
 
-        /**
-         * Update selected photo reference on
-         * @param event - PhotoSelected event
-         * @param p     - with photo param 'p'
-         */
-        function handleSelectedPhotoChanged(event, newPhoto) {
-            $log.info('PhotoGridController: Received selectedPhotoChanged event, updating selected reference');
-
-            // deselect previous photo
-            if (!angular.isUndefined(vm.selectedPhoto)) {
-                vm.selectedPhoto.isSelected = false;
-            }
-            // keep a reference of the new selected photo
-            vm.selectedPhoto = newPhoto;
-
-            $log.info('PhotoGridController: New selected index is ' + vm.selectedPhoto.displayIndex);
+                // $routeChangeSuccess deregistration function
+                deregFunc();
+            });
         }
 
         /**

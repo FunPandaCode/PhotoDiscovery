@@ -16,6 +16,9 @@
                 templateUrl: 'components/photoGrid/photoGrid.tpl.html',
                 controller: 'PhotoGridController',
                 controllerAs: 'PhotoGridCtrl'
+            }).
+            otherwise({
+                redirectTo: '/'
             });
     }
 })();

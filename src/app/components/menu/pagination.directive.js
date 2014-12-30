@@ -53,7 +53,7 @@
                 // init element in a hidden state
                 element.hide();
 
-                // add listener on selectedPhotoChanged event
+                // add listener on newPhotosLoaded event
                 EventManager.addEventListener('newPhotosLoaded', constructPagination);
 
                 // On $destroy, clean up resources
@@ -65,7 +65,8 @@
             }
 
             /**
-             * Construct the array for ng-repeat to display the list of pages.
+             * Construct the array for ng-repeat to display the list of pages.  This directive depends on an event
+             * and when received the event $routeParams should be available
              *
              * @param event - event related
              * @param totalPages - the total pages in selected date, use to determine the last pages in the list
@@ -134,7 +135,6 @@
              * @param page - page number selected by user
              */
             function onPageClicked(page) {
-                //element.hide();
                 $location.path('/' + scope.currentDate + '/' + page);
             }
 
@@ -143,7 +143,6 @@
              */
             function onPreviousPageClicked() {
                 if (scope.currentPage > 1) {
-                    //element.hide();
                     $location.path('/' + scope.currentDate + '/' + (scope.currentPage - 1));
                 }
             }
@@ -153,7 +152,6 @@
              */
             function onNextPageClicked() {
                 if (scope.currentPage > 0 && scope.currentPage < scope.totalPages) {
-                    //element.hide();
                     $location.path('/' + scope.currentDate + '/' + (scope.currentPage + 1));
                 }
             }
