@@ -5,9 +5,9 @@
         .module('app.PhotoGrid')
         .controller('PhotoGridController', PhotoGridController);
 
-    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager', '$routeParams', '$location', '$log'];
+    PhotoGridController.$inject = ['$scope', 'FlickrService', 'Photo', 'EventManager', '$stateParams', '$location', '$log'];
 
-    function PhotoGridController($scope, FlickrSerice, Photo, EventManager, $routeParams, $location, $log) {
+    function PhotoGridController($scope, FlickrSerice, Photo, EventManager, $stateParams, $location, $log) {
         $log.info('PhotoGridController created');
 
         /* Private
@@ -39,12 +39,12 @@
             $log.info('PhotoGridController: Initializing event listeners');
 
             // load images once route changed successfully
-            deregFunc = $scope.$on('$routeChangeSuccess', function () {
-                $log.info('PhotoGridController: $routeChangeSuccess');
+            deregFunc = $scope.$on('$stateChangeSuccess', function () {
+                $log.info('PhotoGridController: $stateChangeSuccess');
 
-                if(angular.isDefined($routeParams.date) && angular.isDefined($routeParams.page)){
+                if(angular.isDefined($stateParams.date) && angular.isDefined($stateParams.page)){
                     // load images
-                    loadImages($routeParams.date, $routeParams.page);
+                    loadImages($stateParams.date, $stateParams.page);
                 }
             });
 
@@ -80,7 +80,7 @@
                     if (response.data.stat === 'ok') {
                         $log.info('PhotoGridController: Got images response');
 
-                        // if result returned a different page then $routeParams, that means user entered a page greater
+                        // if result returned a different page then $stateParams, that means user entered a page greater
                         // than the total pages for selected date.  If that is the case then redirect to last page.
                         if(parseInt(response.data.photos.page) < page) {
                             $location.path('/' + date + '/' + response.data.photos.page);

@@ -5,20 +5,21 @@
         .module('PhotoDiscovery')
         .config(config);
 
-    function config($routeProvider) {
-        $routeProvider
-            .when('/', {
+    function config($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+
+        $stateProvider
+            .state('index', {
+                url: '/',
                 templateUrl: 'components/photoGrid/photoGrid.tpl.html',
                 controller: 'PhotoGridController',
                 controllerAs: 'PhotoGridCtrl'
             })
-            .when('/:date/:page', {
+            .state('grid', {
+                url: '/:date/:page',
                 templateUrl: 'components/photoGrid/photoGrid.tpl.html',
                 controller: 'PhotoGridController',
                 controllerAs: 'PhotoGridCtrl'
-            }).
-            otherwise({
-                redirectTo: '/'
             });
     }
 })();

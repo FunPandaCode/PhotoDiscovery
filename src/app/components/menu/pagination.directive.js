@@ -5,9 +5,9 @@
         .module('app.Menu')
         .directive('pagination', Pagination);
 
-    Pagination.$inject = ['MenuConfig', 'EventManager', '$location', '$routeParams', '$log'];
+    Pagination.$inject = ['MenuConfig', 'EventManager', '$location', '$stateParams', '$log'];
 
-    function Pagination(MenuConfig, EventManager, $location, $routeParams, $log) {
+    function Pagination(MenuConfig, EventManager, $location, $stateParams, $log) {
         $log.info('Pagination created');
 
         return {
@@ -66,17 +66,17 @@
 
             /**
              * Construct the array for ng-repeat to display the list of pages.  This directive depends on an event
-             * and when received the event $routeParams should be available
+             * and when received the event $stateParams should be available
              *
              * @param event - event related
              * @param totalPages - the total pages in selected date, use to determine the last pages in the list
              */
             function constructPagination(event, totalPages) {
-                if (angular.isDefined($routeParams.page) && angular.isDefined($routeParams.date)) {
+                if (angular.isDefined($stateParams.page) && angular.isDefined($stateParams.date)) {
                     $log.info('Pagination: set up current page and date');
                     // set current page and date from route params
-                    scope.currentPage = parseInt($routeParams.page);
-                    scope.currentDate = $routeParams.date;
+                    scope.currentPage = parseInt($stateParams.page);
+                    scope.currentDate = $stateParams.date;
 
                     // only interesting in total pages > 0
                     if(!isNaN(totalPages) && totalPages > 0){

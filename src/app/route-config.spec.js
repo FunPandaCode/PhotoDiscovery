@@ -1,15 +1,15 @@
 describe('route config', function () {
     beforeEach(module('PhotoDiscovery'));
 
-    var route;
+    var state;
 
     beforeEach(inject(
-        function (_$route_) {
-            route = _$route_;
+        function (_$state_) {
+            state = _$state_;
         }
     ));
 
     it('should map routes to controllers', function () {
-        expect(route.routes['/'].controller).not.toBe(null);
+        expect(state.get('index').controller).not.toBe(null);
     });
 });

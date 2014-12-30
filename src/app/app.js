@@ -12,7 +12,7 @@
         /**
          * Angular Modules
          */
-            'ngRoute',
+            'ui.router',
             'ngAnimate',
 
         /**

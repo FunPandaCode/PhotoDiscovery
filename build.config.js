@@ -72,7 +72,7 @@ module.exports = {
             'src/libs/fancybox/jquery.fancybox.js',
             'libs/angular/angular.js',
             'libs/angular-animate/angular-animate.js',
-            'libs/angular-route/angular-route.js'
+            'libs/angular-ui-router/release/angular-ui-router.js'
         ],
         css: [
             'libs/bootstrap/dist/css/bootstrap.css',

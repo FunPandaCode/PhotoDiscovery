@@ -5,9 +5,9 @@
         .module('app.Menu')
         .directive('datePicker', DatePicker);
 
-    DatePicker.$inject = ['$location', '$routeParams', '$log'];
+    DatePicker.$inject = ['$location', '$stateParams', '$log'];
 
-    function DatePicker($location, $routeParams, $log) {
+    function DatePicker($location, $stateParams, $log) {
         $log.info('DatePicker created');
 
         return {
@@ -34,19 +34,19 @@
 
 
             /**
-             * On route change success, update datepicker's selected date to the same value as $routeParams.date
+             * On route change success, update datepicker's selected date to the same value as $stateParams.date
              * Returns deregistration function for $destroy event
              *
              * @type {function()|*}
              */
-            deregFunc = scope.$on('$routeChangeSuccess', function () {
-                $log.info('datepicker: $routeChangeSuccess');
+            deregFunc = scope.$on('$stateChangeSuccess', function () {
+                $log.info('datepicker: $stateChangeSuccess');
 
 
-                if(angular.isDefined($routeParams.date)){
-                    scope.selectedDate = $routeParams.date;
+                if(angular.isDefined($stateParams.date)){
+                    scope.selectedDate = $stateParams.date;
 
-                    // set the date picker to $routeParams.date
+                    // set the date picker to $stateParams.date
                     // note: this does not fire changeDate event hence no infinite loop
                     element.datepicker('update', scope.selectedDate);
                 } else {
