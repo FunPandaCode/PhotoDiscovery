@@ -16,7 +16,7 @@
                 controllerAs: 'PhotoGridCtrl'
             })
             .state('grid', {
-                url: '/:date/:page',
+                url: '/{date:[0-9]{4}-[0-9]{2}-[0-9]{2}}/{page:int}',
                 templateUrl: 'components/photoGrid/photoGrid.tpl.html',
                 controller: 'PhotoGridController',
                 controllerAs: 'PhotoGridCtrl'

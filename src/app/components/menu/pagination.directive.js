@@ -125,6 +125,11 @@
 
                         // it's time to show the element
                         element.show();
+                    } else {
+                        // reset scope.pages so when it does get populated the animation will work
+                        scope.pages = null;
+                        // hide datepicker if total pages is <= 0 since there is no page to select
+                        element.hide();
                     }
                 }
             }

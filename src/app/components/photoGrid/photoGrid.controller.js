@@ -65,6 +65,9 @@
         function loadImages(date, page) {
             $log.info('PhotoGridController: Loading images for date: ' + date + ' and on page: ' + page);
 
+            // TODO: if response.status !== 200, then show a message to user
+            // TODO: if response.data.stat === 'fail', then show a message to user saying no interesting photos are available for that date
+
             // reset images collection
             vm.images = null;
             // reset pagination
@@ -98,6 +101,7 @@
                             return p;
                         });
                     } else {
+                        EventManager.dispatchEvent('newPhotosLoaded', 0);
                         $log.warn('Response status is not ok');
                         $log.warn(response);
                     }
