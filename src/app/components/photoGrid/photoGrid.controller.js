@@ -20,7 +20,6 @@
          ---------------------------------------------------- */
         vm.images = [];
         vm.isLoading = false;
-        vm.selectedPhoto = undefined;
 
 
         // initialize controller
